@@ -40,7 +40,7 @@ public class MyService extends Service {
         //普通的消息通知
 //        NotificationManager manager = (NotificationManager) this.getSystemService(this.NOTIFICATION_SERVICE);
 //        Notification.Builder builder = new Notification.Builder(this);//新建Notification.Builder对象
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, TestActivity.class), 0);
 //        builder.setContentTitle("service test");
 //        builder.setContentText("message");
 //        builder.setSmallIcon(R.mipmap.ic_launcher);
@@ -54,11 +54,14 @@ public class MyService extends Service {
         NotificationManager systemService = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification);
         remoteViews.setImageViewResource(R.id.iv_imageview,R.mipmap.programmer);
-        remoteViews.setTextViewText(R.id.btn_start_service,"我是程序员。。。。。。");
+        remoteViews.setTextViewText(R.id.tv_notification,"我是程序员。。。。。。");
+        remoteViews.setImageViewResource(R.id.iv_logo,R.mipmap.ic_launcher);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setOngoing(false);
         builder.setAutoCancel(false);
         builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setContentTitle("主题名称");
+        builder.setContentText("测试测试测试");
         Notification notification = builder.build();
         notification.defaults = Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;
         notification.flags = Notification.FLAG_AUTO_CANCEL;
